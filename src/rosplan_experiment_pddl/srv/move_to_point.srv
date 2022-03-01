@@ -1,0 +1,6 @@
+string robot
+string location
+string destination
+string floor
+---
+string result

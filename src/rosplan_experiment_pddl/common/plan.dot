@@ -1,0 +1,51 @@
+digraph plan {
+0[ label="plan_start",style=filled,fillcolor=black,fontcolor=white];
+1[ label="robot_navigation_start
+(armadillo,near_elevator1,corridor)",style=filled,fillcolor=darkolivegreen,fontcolor=white];
+2[ label="robot_navigation_end
+(armadillo,near_elevator1,corridor)",style=filled,fillcolor=darkolivegreen,fontcolor=white];
+3[ label="sense_object_start
+(armadillo,can,corridor)",style=filled,fillcolor=darkolivegreen,fontcolor=white];
+4[ label="sense_object_end
+(armadillo,can,corridor)",style=filled,fillcolor=darkolivegreen,fontcolor=white];
+5[ label="pick_unknown_start
+(armadillo,can,corridor)",style=filled,fillcolor=darkolivegreen,fontcolor=white];
+6[ label="pick_unknown_end
+(armadillo,can,corridor)",style=filled,fillcolor=darkolivegreen,fontcolor=white];
+7[ label="robot_navigation_start
+(armadillo,corridor,auditorium)",style=filled,fillcolor=darkgoldenrod2];
+8[ label="robot_navigation_end
+(armadillo,corridor,auditorium)",style=filled,fillcolor=darkgoldenrod2];
+9[ label="place_unknown_start
+(armadillo,can,table3,auditorium)"];
+10[ label="place_unknown_end
+(armadillo,can,table3,auditorium)"];
+11[ label="robot_navigation_start
+(armadillo,auditorium,near_elevator1)"];
+12[ label="robot_navigation_end
+(armadillo,auditorium,near_elevator1)"];
+"0" -> "1" [ label="[0.001, inf]" , penwidth=2, color="black"]
+"1" -> "2" [ label="[5, 5]" , penwidth=2, color="black"]
+"0" -> "2" [ label="[0.001, inf]" , penwidth=2, color="black"]
+"2" -> "3" [ label="[0.001, inf]" , penwidth=2, color="black"]
+"2" -> "5" [ label="[0.001, inf]" , penwidth=2, color="black"]
+"3" -> "5" [ label="[0.001, inf]" , penwidth=2, color="black"]
+"2" -> "7" [ label="[0.001, inf]" , penwidth=2, color="black"]
+"5" -> "7" [ label="[0.001, inf]" , penwidth=2, color="black"]
+"3" -> "7" [ label="[0.001, inf]" , penwidth=2, color="black"]
+"5" -> "6" [ label="[5, 5]" , penwidth=2, color="red"]
+"3" -> "6" [ label="[0.001, inf]" , penwidth=2, color="red"]
+"7" -> "8" [ label="[5, 5]" , penwidth=2, color="red"]
+"0" -> "8" [ label="[0.001, inf]" , penwidth=2, color="red"]
+"6" -> "9" [ label="[0.001, inf]" , penwidth=2, color="black"]
+"8" -> "9" [ label="[0.001, inf]" , penwidth=2, color="black"]
+"8" -> "11" [ label="[0.001, inf]" , penwidth=2, color="black"]
+"9" -> "11" [ label="[0.001, inf]" , penwidth=2, color="black"]
+"3" -> "4" [ label="[10, 10]" , penwidth=2, color="red"]
+"0" -> "4" [ label="[0.001, inf]" , penwidth=2, color="red"]
+"9" -> "10" [ label="[5, 5]" , penwidth=2, color="black"]
+"6" -> "10" [ label="[0.001, inf]" , penwidth=2, color="black"]
+"11" -> "12" [ label="[5, 5]" , penwidth=2, color="black"]
+"1" -> "12" [ label="[0.001, inf]" , penwidth=2, color="red"]
+}
+

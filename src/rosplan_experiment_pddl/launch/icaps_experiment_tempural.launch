@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<launch>
+
+<arg name="domain_path"	default="$(find rosplan_experiment_pddl)/pddl/experiment_domain.pddl" />
+		<arg name="problem_path"	default="$(find rosplan_experiment_pddl)/pddl/experiment_problem.pddl" />
+
+<arg name="data_path"            value="$(find rosplan_experiment_pddl)/common" />
+<!-- automatically generated pddl problem will be created here -->
+  <arg name="autom_gen_problem_path" default="$$(find rosplan_experiment_pddl)/common/auto_problem.pddl" />
+
+<!-- knowledge base -->
+	<node name="rosplan_knowledge_base" pkg="rosplan_knowledge_base" type="knowledgeBase" respawn="false" output="screen">
+		<param name="domain_path" value="$(arg domain_path)" />
+		<param name="problem_path" value="$(arg problem_path)" />
+		<!-- conditional planning flags -->
+		<param name="use_unknowns" value="false" />
+	</node>
+
+
+<!-- problem generation -->
+	<include file="$(find rosplan_planning_system)/launch/includes/problem_interface.launch">
+		<arg name="knowledge_base"   value="rosplan_knowledge_base" />
+		<arg name="domain_path"      value="$(arg domain_path)" />
+		<arg name="problem_path"     value="$(arg problem_path)" />
+		<arg name="problem_topic"    value="problem_instance" />
+	</include>
+
+
+	<!-- planner interface -->
+	<include file="$(find rosplan_planning_system)/launch/includes/planner_interface.launch">
+		<arg name="use_problem_topic"    value="true" />
+		<arg name="problem_topic"        value="/rosplan_problem_interface/problem_instance" />
+		<arg name="planner_topic"        value="planner_output" />
+		<arg name="domain_path"          value="$(arg domain_path)" />
+		<arg name="problem_path"         value="$(arg problem_path)" />
+		<arg name="data_path"            value="$(arg data_path)" />
+		<arg name="planner_command"      value="timeout 10 $(find rosplan_planning_system)/common/bin/popf DOMAIN PROBLEM" />
+	</include>
+
+
+  <!-- plan parsing -->
+  <include file="$(find rosplan_planning_system)/launch/includes/parsing_interface.launch">
+    <arg name="knowledge_base"   value="rosplan_knowledge_base" />
+    <arg name="planner_topic"    value="/rosplan_planner_interface/planner_output" />
+    <arg name="plan_topic"       value="complete_plan" />
+  </include>
+
+  <!-- plan dispatch -->
+  <include file="$(find rosplan_planning_system)/launch/includes/dispatch_interface.launch">
+    <arg name="knowledge_base"           value="rosplan_knowledge_base" />
+    <arg name="plan_topic"               value="/rosplan_parsing_interface/complete_plan" />
+    <arg name="action_dispatch_topic"    value="action_dispatch" />
+    <arg name="action_feedback_topic"    value="action_feedback" />
+  </include>
+
+
+<!-- pick action interface 
+	<node name="rosplan_interface_pick" pkg="rosplan_planning_system" type="pickInterface" respawn="false" output="screen">
+		<param name="knowledge_base"		value="rosplan_knowledge_base" />
+		<param name="pddl_action_name"		value="pick_unknown" />
+		<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch" />
+		<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback" />
+	</node>
+
+
+ sense action interface 
+	<node name="rosplan_interface_sense" pkg="rosplan_planning_system" type="senseInterface" respawn="false" output="screen">
+		<param name="knowledge_base"		value="rosplan_knowledge_base" />
+		<param name="pddl_action_name"		value="sense_object" />
+		<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch" />
+		<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback" />
+	</node>--> 
+
+
+
+	<!-- sim actions -->
+<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+		<arg name="pddl_action_name" value="pick_unknown" />
+</include>
+	<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+		<arg name="pddl_action_name" value="sense_object" />
+	</include>
+	<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+		<arg name="pddl_action_name" value="place_unknown" />
+	</include>
+	<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+		<arg name="pddl_action_name" value="robot_navigation" />
+	</include>
+</launch>
+
+
+

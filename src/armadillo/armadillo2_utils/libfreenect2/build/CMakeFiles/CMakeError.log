@@ -1,0 +1,89 @@
+Determining if the CL_VERSION_2_0 exist failed with the following output:
+Change Dir: /home/armadillo/catkin_ws/src/armadillo/armadillo2_utils/libfreenect2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_dcbaa/fast"
+/usr/bin/make -f CMakeFiles/cmTC_dcbaa.dir/build.make CMakeFiles/cmTC_dcbaa.dir/build
+make[1]: Entering directory '/home/armadillo/catkin_ws/src/armadillo/armadillo2_utils/libfreenect2/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_dcbaa.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -I/usr/local/cuda-10.1/include   -o CMakeFiles/cmTC_dcbaa.dir/CheckSymbolExists.c.o   -c /home/armadillo/catkin_ws/src/armadillo/armadillo2_utils/libfreenect2/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/home/armadillo/catkin_ws/src/armadillo/armadillo2_utils/libfreenect2/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c: In function ‘main’:
+/home/armadillo/catkin_ws/src/armadillo/armadillo2_utils/libfreenect2/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8:19: error: ‘CL_VERSION_2_0’ undeclared (first use in this function)
+   return ((int*)(&CL_VERSION_2_0))[argc];
+                   ^
+/home/armadillo/catkin_ws/src/armadillo/armadillo2_utils/libfreenect2/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8:19: note: each undeclared identifier is reported only once for each function it appears in
+CMakeFiles/cmTC_dcbaa.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_dcbaa.dir/CheckSymbolExists.c.o' failed
+make[1]: *** [CMakeFiles/cmTC_dcbaa.dir/CheckSymbolExists.c.o] Error 1
+make[1]: Leaving directory '/home/armadillo/catkin_ws/src/armadillo/armadillo2_utils/libfreenect2/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_dcbaa/fast' failed
+make: *** [cmTC_dcbaa/fast] Error 2
+
+File /home/armadillo/catkin_ws/src/armadillo/armadillo2_utils/libfreenect2/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include </usr/local/cuda-10.1/include/CL/cl.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef CL_VERSION_2_0
+  return ((int*)(&CL_VERSION_2_0))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/armadillo/catkin_ws/src/armadillo/armadillo2_utils/libfreenect2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_82402/fast"
+/usr/bin/make -f CMakeFiles/cmTC_82402.dir/build.make CMakeFiles/cmTC_82402.dir/build
+make[1]: Entering directory '/home/armadillo/catkin_ws/src/armadillo/armadillo2_utils/libfreenect2/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_82402.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -fPIC    -o CMakeFiles/cmTC_82402.dir/CheckSymbolExists.c.o   -c /home/armadillo/catkin_ws/src/armadillo/armadillo2_utils/libfreenect2/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_82402
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_82402.dir/link.txt --verbose=1
+/usr/bin/cc  -fPIC     CMakeFiles/cmTC_82402.dir/CheckSymbolExists.c.o  -o cmTC_82402 -rdynamic 
+CMakeFiles/cmTC_82402.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_82402.dir/build.make:97: recipe for target 'cmTC_82402' failed
+make[1]: *** [cmTC_82402] Error 1
+make[1]: Leaving directory '/home/armadillo/catkin_ws/src/armadillo/armadillo2_utils/libfreenect2/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_82402/fast' failed
+make: *** [cmTC_82402/fast] Error 2
+
+File /home/armadillo/catkin_ws/src/armadillo/armadillo2_utils/libfreenect2/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/armadillo/catkin_ws/src/armadillo/armadillo2_utils/libfreenect2/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_288bd/fast"
+/usr/bin/make -f CMakeFiles/cmTC_288bd.dir/build.make CMakeFiles/cmTC_288bd.dir/build
+make[1]: Entering directory '/home/armadillo/catkin_ws/src/armadillo/armadillo2_utils/libfreenect2/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_288bd.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_288bd.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+Linking C executable cmTC_288bd
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_288bd.dir/link.txt --verbose=1
+/usr/bin/cc  -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_288bd.dir/CheckFunctionExists.c.o  -o cmTC_288bd -rdynamic -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_288bd.dir/build.make:97: recipe for target 'cmTC_288bd' failed
+make[1]: *** [cmTC_288bd] Error 1
+make[1]: Leaving directory '/home/armadillo/catkin_ws/src/armadillo/armadillo2_utils/libfreenect2/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_288bd/fast' failed
+make: *** [cmTC_288bd/fast] Error 2
+
+

@@ -1,0 +1,28 @@
+## for detecting the red colour
+#H_min: 3
+#H_max: 160
+#S_min: 70
+#S_max: 255
+#V_min: 10
+#V_max: 255
+
+## for detecting the blue colour
+
+H_min: 25
+H_max: 102
+S_min: 52
+S_max: 255
+V_min: 72
+V_max: 255
+
+A_min: 7
+A_max: 20000
+
+gaussian_ksize: 0
+gaussian_sigma: 0
+morph_size: 0
+
+#For pick up red can, make the below true or it was true
+invert_Hue: false
+
+

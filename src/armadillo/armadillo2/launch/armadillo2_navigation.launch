@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- armadillo2 top-level launch -->
+
+<launch>
+
+	<!--common settings-->
+	<arg name="gazebo" default="false" doc="execute armadillo2 inside gazebo sim"/>
+	<arg name="world_name" default="worlds/empty.world"/>
+	<arg name="x" default="0.0"/>
+	<arg name="y" default="0.0"/>
+	<arg name="z" default="0.0"/>
+	<arg name="Y" default="0.0" />
+	<arg name="moveit" default="false"/>
+	<arg name="intel_cam" default="false"/> 
+	<arg name="kinect" default="false"/>
+	<arg name="lidar" default="false"/>
+	<arg name="gmapping" default="false"/>-->
+	<arg name="hector_slam" default="false"/>
+	<arg name="amcl" default="false"/>
+	<arg name="have_map" default="false" doc="set to true to use pre-saved map"/>
+	<arg name="map" default="map.yaml" doc="pre-saved map path"/>
+	<arg name="move_base" default="false"/>
+	<arg name="robot_localization" default="false"/>
+	<arg name="teleop" default="false" doc="allow armadillo2 joy teleop"/>
+	<arg name="espeak_ros" default="false"/>
+
+	<include file="$(find armadillo_navigation)/launch/armadillo2_for_navigation_upgrade.launch">
+		<arg name="gazebo" value="$(arg gazebo)"/>
+		<arg name="world_name" value="$(arg world_name)"/>
+		<arg name="x" value="$(arg x)"/>
+		<arg name="y" value="$(arg y)"/>
+		<arg name="z" value="$(arg z)"/>
+		<arg name="Y" value="$(arg Y)"/>
+		<arg name="moveit" value="$(arg moveit)"/>
+		<arg name="intel_cam" value="$(arg intel_cam)"/>
+		<arg name="kinect" value="$(arg kinect)"/>
+		<arg name="lidar" value="$(arg lidar)"/>
+		<arg name="teleop" value="$(arg teleop)"/>
+		<arg name="espeak_ros" value="$(arg espeak_ros)"/>
+	</include>
+
+	<include file="$(find armadillo_navigation)/launch/armadillo_navigation_upgrade.launch">
+		<arg name="hector_slam" value="$(arg hector_slam)"/>
+		<arg name="amcl" value="$(arg amcl)"/>
+		<arg name="have_map" value="$(arg have_map)"/>
+		<arg name="map" value="$(arg map)"/>
+		<arg name="move_base" value="$(arg move_base)"/>
+		<arg name="x" value="$(arg x)"/>
+		<arg name="y" value="$(arg y)"/>
+		<arg name="z" value="$(arg z)"/>
+		<arg name="Y" value="$(arg Y)"/>
+		
+	</include>
+
+</launch>
